@@ -1,6 +1,6 @@
 # Huobi Golang SDK
 
-This is Huobi Go SDK,  you can install to your Golang project and use this SDK to query all market data, trading and manage your account.
+This is Huobi Go SDK, you can install to your Golang project and use this SDK to query all market data, trading and manage your account.
 
 The SDK supports RESTful API invoking, and concurrently subscribing the market, account and order update from the Websocket connection.
 
@@ -32,14 +32,14 @@ The SDK supports RESTful API invoking, and concurrently subscribing the market, 
 
 The SDK is compiled by Go 1.13.7, you can import this SDK in your Golang project:
 
-* Import **/pkg/client** package
-* Create one of the clients (under package **/pkg/client**) instance by **Init** method
-* Call the method provided by client.
+- Import **/pkg/client** package
+- Create one of the clients (under package **/pkg/client**) instance by **Init** method
+- Call the method provided by client.
 
 ```go
 import (
   "fmt"
-  "github.com/huobirdcenter/huobi_golang/pkg/client"
+  "github.com/xuhao/huobi_golang/pkg/client"
 )
 
 // Get the timestamp from Huobi server and print on console
@@ -85,16 +85,16 @@ This is the folder and package structure of SDK source code and the description
 - **config**: It stores the common configuration, such as host, access key.
 - **cmd**: The main package is defined here, it provides the examples how to use **client** package and **response** package to access API and read response.
 
-As the example indicates, there are two important namespaces: **client** and **response**,  this section will introduce both of them below.
+As the example indicates, there are two important namespaces: **client** and **response**, this section will introduce both of them below.
 
 ### Run examples
 
 This SDK provides examples that under **/cmd** folder, if you want to run the examples to access private data, you need below additional steps:
 
 1. Create an **API Key** first from Huobi official website
-2. Create **key.go** into your **config** folder (package). The purpose of this file is to prevent submitting SecretKey into repository by accident, so this file is already added in the *.gitignore* file. 
+2. Create **key.go** into your **config** folder (package). The purpose of this file is to prevent submitting SecretKey into repository by accident, so this file is already added in the _.gitignore_ file.
 
-3. Assign your secret key to string *SecretKey*:
+3. Assign your secret key to string _SecretKey_:
 
 ```go
 // key.go file
@@ -110,7 +110,7 @@ Regarding the difference between public data and private data you can find detai
 
 ### Client
 
-In this SDK, the client is the struct to access the Huobi API. In order to isolate the private data with public data, and isolated different kind of data, the client category is designated to match the API category. 
+In this SDK, the client is the struct to access the Huobi API. In order to isolate the private data with public data, and isolated different kind of data, the client category is designated to match the API category.
 
 All the client is listed in below table. Each client is very small and simple, it is only responsible to operate its related data, you can pick up multiple clients to create your own application based on your business.
 
@@ -195,17 +195,17 @@ for _, kline := range resp {
 
 ### Init function
 
-Golang is not a pure object oriented programming language, and there is no native constructor. In this SDK, every struct has an ***Init*** function for each struct, you must call Init function first, otherwise the member variables may not be initialized expected.
+Golang is not a pure object oriented programming language, and there is no native constructor. In this SDK, every struct has an **_Init_** function for each struct, you must call Init function first, otherwise the member variables may not be initialized expected.
 
 ### Logging
 
-This SDK uses the high performance logging library [zap](https://github.com/uber-go/zap), which provide different kind of loggers. To better support format message, this SDK uses the SugaredLogger, and wrapped a few interfaces in package *logging/applogger*. It has below features:
+This SDK uses the high performance logging library [zap](https://github.com/uber-go/zap), which provide different kind of loggers. To better support format message, this SDK uses the SugaredLogger, and wrapped a few interfaces in package _logging/applogger_. It has below features:
 
 1. Logging target is console (In the future we will support output to file)
 2. Support multiple levels (Fatal, Error, Panic, Warn, Info and Debug) and minimum log level
 3. Support colorful text (by default)
 
-You can customize your own logging by updating *applogger.go* file.
+You can customize your own logging by updating _applogger.go_ file.
 
 ## Request Examples
 
@@ -275,7 +275,7 @@ resp, err := client.GetLast24hCandlestick("btcusdt")
 
 ### Account
 
-*Authentication is required.*
+_Authentication is required._
 
 ```go
 client := new(client.AccountClient).Init(config.AccessKey, config.SecretKey, config.Host)
@@ -284,7 +284,7 @@ resp, err := client.GetAccountInfo()
 
 ### Wallet
 
-*Authentication is required.*
+_Authentication is required._
 
 #### Withdraw
 
@@ -317,7 +317,7 @@ resp, err := client.QueryDepositWithdraw(depositType, queryDepositWithdrawOption
 
 ### Trading
 
-*Authentication is required.*
+_Authentication is required._
 
 #### Create order
 
@@ -371,7 +371,7 @@ resp, err := client.GetHistoryOrders(request)
 
 ### Margin Loan
 
-*Authentication is required.*
+_Authentication is required._
 
 #### Apply loan
 
@@ -401,7 +401,7 @@ resp, err := client.MarginOrdersRepay(orderId, request)
 client := new(client.IsolatedMarginClient).Init(config.AccessKey, config.SecretKey, config.Host)
 optionalRequest := margin.IsolatedMarginLoanOrdersOptionalRequest{
   StartDate: "2020-1-1",
-}  
+}
 
 resp, err := client.MarginLoanOrders("btcusdt", optionalRequest)
 ```
@@ -450,7 +450,7 @@ client.Connect(true)
 
 ### Subscribe account update
 
-*Authentication is required.*
+_Authentication is required._
 
 ```go
 // Initialize a new instance for account update websocket v2 client
@@ -461,7 +461,7 @@ client.Connect(true)
     // Authentication response handler
     func(resp *auth.WebSocketV2AuthenticationResponse) {
       if resp.IsSuccess() {
-        client.Subscribe("1", "1149")        
+        client.Subscribe("1", "1149")
       } else {
         applogger.Error("Authentication error, code: %d, message:%s", resp.Code, resp.Message)
       }
@@ -497,7 +497,7 @@ client.Connect(true)
 
 ### Subscribe order update
 
-*Authentication is required.*
+_Authentication is required._
 
 ```go
 // Initialize a new instance
@@ -542,7 +542,7 @@ client.Connect(true)
 
 ### Subscribe trade update
 
-*Authentication is required.*
+_Authentication is required._
 
 ```go
 // Initialize a new instance

@@ -3,11 +3,12 @@ package client
 import (
 	"encoding/json"
 	"errors"
-	"github.com/huobirdcenter/huobi_golang/internal"
-	"github.com/huobirdcenter/huobi_golang/internal/requestbuilder"
-	"github.com/huobirdcenter/huobi_golang/pkg/model"
-	"github.com/huobirdcenter/huobi_golang/pkg/model/wallet"
 	"strconv"
+
+	"github.com/xuhao/huobi_golang/internal"
+	"github.com/xuhao/huobi_golang/internal/requestbuilder"
+	"github.com/xuhao/huobi_golang/pkg/model"
+	"github.com/xuhao/huobi_golang/pkg/model/wallet"
 )
 
 // Responsible to operate wallet
@@ -66,7 +67,6 @@ func (p *WalletClient) GetWithdrawQuota(currency string) (*wallet.WithdrawQuota,
 	}
 	return nil, errors.New(getResp)
 }
-
 
 //  Parent user to query withdraw address available for API key
 func (p *WalletClient) GetWithdrawAddress(request *model.GetRequest) (*wallet.GetWithdrawAddressResponse, error) {

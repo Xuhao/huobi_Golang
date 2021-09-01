@@ -3,10 +3,11 @@ package client
 import (
 	"encoding/json"
 	"errors"
-	"github.com/huobirdcenter/huobi_golang/internal"
-	"github.com/huobirdcenter/huobi_golang/internal/requestbuilder"
-	"github.com/huobirdcenter/huobi_golang/pkg/model"
-	"github.com/huobirdcenter/huobi_golang/pkg/model/common"
+
+	"github.com/xuhao/huobi_golang/internal"
+	"github.com/xuhao/huobi_golang/internal/requestbuilder"
+	"github.com/xuhao/huobi_golang/pkg/model"
+	"github.com/xuhao/huobi_golang/pkg/model/common"
 )
 
 // Responsible to get common information
